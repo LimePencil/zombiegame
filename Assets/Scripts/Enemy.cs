@@ -14,12 +14,14 @@ public class Enemy : MonoBehaviour
     }
     // Update is called once per frame
     void OnCollisionEnter2D(Collision2D other) {
-        int damage = other.gameObject.GetComponent<Bullet>().bulletDamage;
-        currentHealth -= damage;
-        healthBar.setHealth(currentHealth);
-        checkDead();
-
+        if (other.gameObject.GetComponent<Bullet>() != null){
+            int damage = other.gameObject.GetComponent<Bullet>().bulletDamage;
+            currentHealth -= damage;
+            healthBar.setHealth(currentHealth);
+            checkDead();
+        }
     }
+    
     void checkDead(){
         if (currentHealth<=0){
             Destroy(gameObject);
