@@ -25,6 +25,8 @@ ExportedObj/
 *.opendb
 *.VC.db
 
+mono_crash.*
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
