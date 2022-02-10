@@ -17,7 +17,12 @@ public class Enemy : MonoBehaviour
         int damage = other.gameObject.GetComponent<Bullet>().bulletDamage;
         currentHealth -= damage;
         healthBar.setHealth(currentHealth);
+        checkDead();
 
     }
-
+    void checkDead(){
+        if (currentHealth<=0){
+            Destroy(gameObject);
+        }
+    }
 }
