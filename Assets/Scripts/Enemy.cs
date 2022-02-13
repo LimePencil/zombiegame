@@ -7,13 +7,16 @@ public class Enemy : MonoBehaviour
     public int maxhealth = 100;
     public int currentHealth = 100;
     public HealthBar healthBar;
+    public GameObject UIabove;
 
     void Start()
     {
         healthBar.setMaxHealth(maxhealth);
+        UIabove.SetActive(false);
     }
     // Update is called once per frame
     void OnCollisionEnter2D(Collision2D other) {
+        UIabove.SetActive(true);
         if (other.gameObject.GetComponent<Bullet>() != null){
             int damage = other.gameObject.GetComponent<Bullet>().bulletDamage;
             currentHealth -= damage;

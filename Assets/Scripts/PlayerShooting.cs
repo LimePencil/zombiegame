@@ -28,6 +28,7 @@ public class PlayerShooting : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         animator.SetTrigger("Shoot");
         rb.AddForce(firepoint.up*bulletForce,ForceMode2D.Impulse);
+        Destroy(bullet,3f);
         
     }
     IEnumerator FireRate(){
