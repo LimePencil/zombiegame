@@ -2,16 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShooting : MonoBehaviour
+public class GunShooting : MonoBehaviour
 {
 
     public Transform firepoint;
     public GameObject bulletPrefab;
-    public float bulletForce = 20f;
+    private float bulletForce;
     private bool allowFire = true;
-    public float bulletPerSecond = 5f;
+    private float bulletPerSecond;
     public Animator animator;
+    private PlayerStatus stat;
+    private float bulletDamage;
 
+    void Start(){
+        stat = GetComponentInParent<PlayerStatus>();
+        bulletPerSecond = stat.bulletPerSecond;
+        bulletDamage = stat.bulletDamage;
+        bulletForce = stat.bulletForce; 
+    }
     // Update is called once per frame
     void Update()
     {
@@ -19,12 +27,15 @@ public class PlayerShooting : MonoBehaviour
             allowFire = false;
             Shoot();
             StartCoroutine(FireRate());
+            
         }
         
     }
     void Shoot(){
 
         GameObject bullet = Instantiate(bulletPrefab,firepoint.position,firepoint.rotation);
+        bullet.GetComponent<Bullet>().bulletDamage = bulletDamage;
+        bullet.GetComponent<Bullet>().setColor(stat.color);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         animator.SetTrigger("Shoot");
         rb.AddForce(firepoint.up*bulletForce,ForceMode2D.Impulse);

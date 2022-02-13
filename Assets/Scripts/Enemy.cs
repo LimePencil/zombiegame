@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int maxhealth = 100;
-    public int currentHealth = 100;
+    public float maxhealth = 50;
+    public float currentHealth = 50;
     public HealthBar healthBar;
     public GameObject UIabove;
+    public float enemyBodyDamage = 10f;
 
     void Start()
     {
@@ -17,8 +18,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void OnCollisionEnter2D(Collision2D other) {
         UIabove.SetActive(true);
-        if (other.gameObject.GetComponent<Bullet>() != null){
-            int damage = other.gameObject.GetComponent<Bullet>().bulletDamage;
+        if (other.gameObject.tag == "Bullet"){
+            float damage = other.gameObject.GetComponent<Bullet>().bulletDamage;
+            currentHealth -= damage;
+            healthBar.setHealth(currentHealth);
+            checkDead();
+        }
+        else if (other.gameObject.tag == "Player"){
+            float damage = other.gameObject.GetComponent<PlayerStatus>().playerBodyDamage;
             currentHealth -= damage;
             healthBar.setHealth(currentHealth);
             checkDead();

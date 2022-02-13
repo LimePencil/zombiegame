@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1268880959262636222}
   - component: {fileID: 4203233745413990985}
-  - component: {fileID: 1280243616437260935}
   - component: {fileID: 2480187969506169975}
   - component: {fileID: 4046935610040067705}
+  - component: {fileID: 5581707250502967444}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,27 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &1280243616437260935
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5616022105762675642}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 9eb867cd42b76426f99c36447c28f7ea, type: 2}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!58 &2480187969506169975
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -137,6 +116,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e510564d97e4c4f70aacf429aa5d06e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletDamage: 10
+--- !u!50 &5581707250502967444
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616022105762675642}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6010857608242407617
 GameObject:
   m_ObjectHideFlags: 0
