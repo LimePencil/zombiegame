@@ -14,19 +14,31 @@ public class PlayerStatus : MonoBehaviour
     public float healthBarOffset = 0.5f;
     public Color color;
     public HealthBar healthBar;
+    public GameObject canvas;
     
     void Start(){
         healthBar.setMaxHealth(playerMaxHealth);
         GetComponent<SpriteRenderer>().color = color;
         playerCurrentHealth = playerMaxHealth;
+        canvas.SetActive(false);
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag == "Enemy"){
+            canvas.SetActive(true);
             float damage = other.gameObject.GetComponent<Enemy>().enemyBodyDamage;
             playerCurrentHealth -= damage;
             healthBar.setHealth(playerCurrentHealth);
+            checkDead();
         }
+    }
+
+    private void checkDead(){
+        if (playerCurrentHealth<=0){
+            Debug.Log("Dead");
+        }
+
     }
 
 }
