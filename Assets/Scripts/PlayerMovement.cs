@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        movement.Normalize();
         mousepos = cam.ScreenToWorldPoint(Input.mousePosition);
         canvas.position = (rb.position) + new Vector2(0,-1*offset);
 
