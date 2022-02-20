@@ -11,15 +11,24 @@ public class Enemy : MonoBehaviour
     public GameObject canvas;
     public Rigidbody2D rb;
     public float offset;
+    public float enemyMovementSpeed=3f;
+    private Rigidbody2D playerRb;
+    public GameManager gm;
 
     void Start()
     {
         healthBar.setMaxHealth(maxhealth);
         canvas.SetActive(false);
+        playerRb = GameObject.Find("PlayerBody").GetComponent<Rigidbody2D>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     
     void Update(){
         canvas.GetComponent<RectTransform>().position = rb.position + new Vector2(0,-1*offset);
+        
+    }
+    void FixedUpdate(){
+        rb.MovePosition(rb.position + (playerRb.position - rb.position).normalized*enemyMovementSpeed*Time.fixedDeltaTime);
     }
 
     // Update is called once per frame
@@ -43,8 +52,8 @@ public class Enemy : MonoBehaviour
     
     void checkDead(){
         if (currentHealth<=0){
-            Destroy(gameObject);
-            Destroy(canvas);
+            Destroy(gameObject.transform.parent.gameObject);
+            gm.addScore(1);
         }
     }
 }

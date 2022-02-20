@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStatus : MonoBehaviour
 {
@@ -36,9 +37,12 @@ public class PlayerStatus : MonoBehaviour
 
     private void checkDead(){
         if (playerCurrentHealth<=0){
-            Debug.Log("Dead");
+            Restart();
         }
 
+    }
+    private void Restart(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }
